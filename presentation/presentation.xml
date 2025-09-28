@@ -18,7 +18,7 @@
         lang="fr">
     <head>
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" charset="utf8"/>
-        <title>Ethap 2025 - atelier 3 - XForms</title>
+        <title>Ethap 2025 - atelier 9 - XForms-TEI</title>
         <link rel="stylesheet" href="./assets/css/main.css" type="text/css"/>
         <model xmlns="http://www.w3.org/2002/xforms">
             <instance id="tutorial" resource="tutorial.xml">
@@ -26,74 +26,6 @@
                     <entry>
                         <title>Initiation aux XForms</title>
                         <file>01xforms.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Objectifs de l'atelier</title>
-                        <file>02objectifs.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Il était une fois XForms</title>
-                        <file>03onceuponatime.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Configuration</title>
-                        <file>04configuration.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Architecture MVC</title>
-                        <file>05mvc.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Architecture MVC - exemple</title>
-                        <file>05mvc_b.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Les mains dans le code</title>
-                        <file>06hands-on.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Le modèle - modélisation</title>
-                        <file>07modele.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Le modèle - sérialisation XML</title>
-                        <file>07modele_b.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>La vue - les contrôles simples</title>
-                        <file>08vue.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>La vue - les collections</title>
-                        <file>08vue_b.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>La vue - les collections - exemple</title>
-                        <file>08vue_c.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Contrôleur - Action</title>
-                        <file>09controleur.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Contrôleur - Action - exemple</title>
-                        <file>09controleur_b.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Contrôleur - Validation</title>
-                        <file>09controleur_c.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Contrôleur - Validation - exemple</title>
-                        <file>09controleur_d.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Contrôleur - Soumission</title>
-                        <file>09controleur_e.xhtml</file>
-                    </entry>
-                    <entry>
-                        <title>Contrôleur - Soumission - exemple</title>
-                        <file>09controleur_f.xhtml</file>
                     </entry>
                     <entry>
                         <title>The End</title>
