@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="xsltforms/xsltforms.xsl" type="text/xsl"?>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:xf="http://www.w3.org/2002/xforms"
+        xf:bogus="fix/Firefox/namespace/issue"
+        xmlns:ev="http://www.w3.org/2001/xml-events"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xs:bogus="fix/Firefox/namespace/issue"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xlink:bogus="fix/Firefox/namespace/issue"
+        xmlns:etp="http://ethap2025/ns/1.0"
+        etp:bogus="fix/Firefox/namespace/issue"
+        xmlns:tei="http://www.tei-c.org/ns/1.0"
+        tei:bogus="fix/Firefox/namespace/issue"
+        xmlns:x="http://www.w3.org/1999/xhtml"
+        lang="fr">
+    <head>
+        <title>Recherche Wikidata</title>
+        <xf:model>
+            
+            <xf:instance id="search">
+                <data xmlns=""><term/></data>
+            </xf:instance>
+
+
+            <xf:instance id="result">
+                <json/>
+            </xf:instance>
+
+            <!-- Soumission API Wikidata -->
+            <xf:submission id="wikidata"
+                           method="get"
+                           instance="result"
+                           replace="instance"
+                           serialization="none" mode="synchronous" mediatype="application/xml">
+                <xf:resource value="
+                concat(
+                    'https://www.wikidata.org/w/api.php?action=wbsearchentities&amp;format=xml&amp;language=fr&amp;origin=*&amp;callback=?&amp;search=',
+                    instance('search')/term
+                  )"/>
+            </xf:submission>
+        </xf:model>
+    </head>
+    <body>
+        <h1>Recherche Wikidata</h1>
+
+        <xf:input ref="instance('search')/term">
+            <xf:label>Mot-clé :</xf:label>
+        </xf:input>
+
+        <xf:submit>
+            <xf:label>rechercher</xf:label>
+        </xf:submit>
+
+        <h2>Résultats</h2>
+        <xf:output value="serialize(instance('result'))"/>
+        <xf:repeat nodeset="instance('result')/search">
+            <div>
+                <strong><xf:output ref="label"/></strong>
+                (<xf:output ref="id"/>) –
+                <xf:output ref="description"/>
+            </div>
+        </xf:repeat>
+    </body>
+</html>
