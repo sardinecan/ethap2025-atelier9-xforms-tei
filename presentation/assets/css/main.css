@@ -162,3 +162,11 @@ xforms-textarea  textarea {
   width: 40em;
   height: 10em;
 }
+
+.illustration {
+  max-width: 50%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  margin: 1em 0;
+}

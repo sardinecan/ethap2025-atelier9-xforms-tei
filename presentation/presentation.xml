@@ -24,8 +24,32 @@
             <instance id="tutorial" resource="tutorial.xml">
                 <tutorial>
                     <entry>
-                        <title>Initiation aux XForms</title>
+                        <title>XForms et TEI</title>
                         <file>01xforms.xhtml</file>
+                    </entry>
+                    <entry>
+                        <title>XForms Annotations</title>
+                        <file>02xforms-annotations.xhtml</file>
+                    </entry>
+                    <entry>
+                        <title>tei Publisher web annotations</title>
+                        <file>03teiPublisher.xhtml</file>
+                    </entry>
+                    <entry>
+                        <title>Almanak</title>
+                        <file>04almanak.xhtml</file>
+                    </entry>
+                    <entry>
+                        <title>Prosopograph</title>
+                        <file>05prosopograph.xhtml</file>
+                    </entry>
+                    <entry>
+                        <title>Prototype Flaubert</title>
+                        <file>06flaubert.xhtml</file>
+                    </entry>
+                    <entry>
+                        <title>Prototype Flaubert</title>
+                        <file>07wikiX.xhtml</file>
                     </entry>
                     <entry>
                         <title>The End</title>
