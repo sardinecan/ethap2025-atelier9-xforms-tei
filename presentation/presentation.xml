@@ -29,31 +29,36 @@
                     </entry>
                     <entry>
                         <title>XForms Annotations</title>
-                        <file>02xforms-annotations.xhtml</file>
+                        <file>02annotations.xhtml</file>
                     </entry>
                     <entry>
-                        <title>tei Publisher web annotations</title>
-                        <file>03teiPublisher.xhtml</file>
+                        <title>XForms Annotations - tei Publisher</title>
+                        <file>02annotations_b.xhtml</file>
                     </entry>
                     <entry>
-                        <title>Almanak</title>
-                        <file>04almanak.xhtml</file>
+                        <title>Données tabulaires</title>
+                        <file>04tabulardata.xhtml</file>
                     </entry>
                     <entry>
-                        <title>Prosopograph</title>
-                        <file>05prosopograph.xhtml</file>
+                        <title>Annexes</title>
+                        <file>05appendices.xhtml</file>
+                    </entry>
+                    <entry>
+                        <title>Prototype Ledoux</title>
+                        <file>06prototype.xhtml</file>
                     </entry>
                     <entry>
                         <title>Prototype Flaubert</title>
-                        <file>06flaubert.xhtml</file>
+                        <file>06prototype_b.xhtml</file>
                     </entry>
+
                     <entry>
-                        <title>Prototype annotation de contenu</title>
-                        <file>07wikiX.xhtml</file>
+                        <title>Prototype Wikix</title>
+                        <file>06prototype_c.xhtml</file>
                     </entry>
                     <entry>
                         <title>The End</title>
-                        <file>10theend.xhtml</file>
+                        <file>07theend.xhtml</file>
                     </entry>
                 </tutorial>
             </instance>
