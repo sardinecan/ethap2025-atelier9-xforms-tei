@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="xsltforms/xsltforms.xsl" type="text/xsl"?>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:xf="http://www.w3.org/2002/xforms"
+        xf:bogus="fix/Firefox/namespace/issue"
+        xmlns:ev="http://www.w3.org/2001/xml-events"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xs:bogus="fix/Firefox/namespace/issue"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xlink:bogus="fix/Firefox/namespace/issue"
+        xmlns:etp="http://ethap2025/ns/1.0"
+        etp:bogus="fix/Firefox/namespace/issue"
+        xmlns:tei="http://www.tei-c.org/ns/1.0"
+        tei:bogus="fix/Firefox/namespace/issue"
+        xmlns:x="http://www.w3.org/1999/xhtml"
+        lang="fr">
+    <head>
+        <title>Recherche Wikidata</title>
+        <link rel="stylesheet" href="./assets/css/main.css" type="text/css"/>
+        <link rel="stylesheet" href="./assets/css/tei.css" type="text/css"/>
+        <script src="./assets/js/generateid.js"/>
+        <xf:model id="model">
+
+            <xf:action ev:event="xforms-ready">
+                <xf:action while="instance('text')//tei:body//tei:persName[not(@xml:id)]">
+                    <xf:insert context="instance('text')//tei:body//tei:persName[not(@xml:id)]"
+                               origin="instance('identifier')/*:item/@xml:id"/>
+                </xf:action>
+
+                <xf:action while="instance('text')//tei:body//tei:persName[not(@ref)]">
+                    <xf:insert context="instance('text')//tei:body//tei:persName[not(@ref)]"
+                               origin="instance('identifier')/*:item/@ref"/>
+                </xf:action>
+
+            </xf:action>
+
+            <xf:action ev:event="xforms-ready">
+                <xf:action while="instance('text')//tei:body//tei:persName[@xml:id='']">
+                    <xf:load>
+                        <xf:resource value="concat('javascript:generateid(''','persName', ''')')"/>
+                    </xf:load>
+                </xf:action>
+            </xf:action>
+
+            <xf:action ev:event="callbackevent">
+                <xf:setvalue ref="instance('text')//tei:body//tei:persName[@xml:id=''][not(preceding::tei:persName[ancestor::tei:body][@xml:id=''])]/@xml:id" value="event('response')"/>
+            </xf:action>
+
+            <xf:instance id="text" src="idc1366.xml"/>
+
+            <xf:instance id="identifier">
+                <data xmlns="">
+                    <item ref="" xml:id=""/>
+                </data>
+            </xf:instance>
+
+            <xf:instance id="search">
+                <data xmlns="">
+                    <term/>
+                </data>
+            </xf:instance>
+
+            <xf:instance id="result">
+                <wikidata xmlns=""/>
+            </xf:instance>
+
+            <!-- Soumission API Wikidata -->
+            <xf:submission id="wikidata"
+                           method="get"
+                           instance="result"
+                           replace="instance"
+                           serialization="none"
+                           mode="synchronous"
+                           mediatype="application/xml">
+                <xf:resource value="concat(
+                    'https://www.wikidata.org/w/api.php?action=wbsearchentities&amp;format=xml&amp;language=fr&amp;origin=*&amp;search=',
+                    instance('search')/term)"/>
+            </xf:submission>
+        </xf:model>
+    </head>
+    <body>
+        <main class="content">
+            <h1><xf:output value="instance('text')/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[1]"/></h1>
+            <article class="letter">
+                <h2>Transcription</h2>
+                <xf:output value="transform(instance('text'),'./assets/xsl/tei2html.xsl', false)" mediatype="text/html"/>
+            </article>
+            <aside>
+                <h2>Personnes citées dans cette lettre</h2>
+                <xf:repeat nodeset="instance('text')//tei:body//tei:persName">
+                    <xf:var name="id" value="./@xml:id"/>
+                    <xf:trigger>
+                        <xf:label><xf:output ref="."/></xf:label>
+                        <xf:action ev:event="DOMActivate">
+                            <xf:setvalue ref="instance('identifier')/*:item/@xml:id" value="$id"/>
+                            <xf:setvalue ref="instance('search')/term" value="current()"/>
+                            <xf:send submission="wikidata"/>
+                            <xf:show dialog="dialogwikidata"/>
+                        </xf:action>
+                    </xf:trigger>
+                </xf:repeat>
+
+                <xf:dialog id="dialogwikidata" class="autocomplete">
+                    <xf:output value="instance('text')//tei:body//tei:persName[@xml:id=instance('identifier')/*:item/@xml:id]"/>
+                    <xf:repeat id="indexResult"
+                               nodeset="instance('result')//*:entity">
+                        <xf:trigger appearance="minimal">
+                            <xf:label>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Wikidata-logo.svg/2880px-Wikidata-logo.svg.png" width="12"/><xf:output value="concat(./@label, ', ', ./@description)"/>
+                            </xf:label>
+                            <xf:setvalue ref="instance('text')//tei:body//tei:persName[@xml:id=instance('identifier')/*:item/@xml:id]/@ref"
+                                         value="concat('#',current()/@id)" ev:event="DOMActivate"/>
+                            <xf:hide ev:event="DOMActivate" dialog="dialogwikidata"/>
+                        </xf:trigger>
+                    </xf:repeat>
+                    <br/>
+                    <xf:trigger>
+                        <xf:label>Ok</xf:label>
+                        <xf:hide ev:event="DOMActivate" dialog="dialogwikidata"/>
+                    </xf:trigger>
+                </xf:dialog>
+            </aside>
+        </main>
+
+        <!--<h2>Serialisation</h2>
+        <xf:output value="serialize(instance('text'))"/>
+        <xf:output value="serialize(instance('result'))"/>-->
+    </body>
+</html>
